@@ -48,13 +48,13 @@ const contactsSlice = createSlice({
     },
     [deleteContact.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.items = state.items.filter(({ id }) => id !== action.payload);
+      // state.items = state.items.filter(({ id }) => id !== action.payload);
       // console.log("что происходит");
-      // const index = state.items.findIndex(
-      //   (user) => user.id === action.payload.id
-      // );
-      // console.log(index);
-      // state.users.splice(index, 1);
+      const index = state.items.findIndex(
+        (user) => user.id === action.payload.id
+      );
+      console.log(index);
+      state.items.splice(index, 1);
     },
   },
 });

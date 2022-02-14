@@ -28,7 +28,7 @@ const ContactForm = () => {
     if (checkName) {
       return toast.error(`${name}is already in contacts`);
     }
-    dispatch(addContact({ name, number, id: nanoid() }));
+    dispatch(addContact({ name, number }));
     onName("");
     onNumber("");
   };

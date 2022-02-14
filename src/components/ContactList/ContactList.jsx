@@ -5,7 +5,10 @@ import ContactItem from "../ContactItem/Item";
 import { getVisibleItems, getLoading } from "redux/contacts/contactsSelected";
 import { ListContainer } from "./CSSContactList";
 import { useEffect } from "react";
-import { fetchContacts } from "../../redux/contacts/contAsyncThunk";
+import {
+  fetchContacts,
+  deleteContact,
+} from "../../redux/contacts/contAsyncThunk";
 
 const ContactList = () => {
   const items = useSelector(getVisibleItems);
@@ -15,12 +18,25 @@ const ContactList = () => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
+  // const handleClick = (id) => {
+  //   dispatch(deleteContact(id));
+  //   dispatch(fetchContacts());
+  // };
+
   return loading ? (
     <p>...Loading</p>
   ) : (
     <ListContainer>
       {items.map(({ id, name, phone }) => {
-        return <ContactItem key={id} id={id} name={name} number={phone} />;
+        return (
+          <ContactItem
+            key={id}
+            id={id}
+            name={name}
+            number={phone}
+            // onClick={handleClick}
+          />
+        );
       })}
     </ListContainer>
   );

@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { Item } from "./CSSContactItem";
 import { deleteContact, fetchContacts } from "redux/contacts/contAsyncThunk";
-import { getLoading } from "../../redux/contacts/contactsSelected";
+// import { getLoading } from "../../redux/contacts/contactsSelected";
 
 const ContactItem = ({ name, number, id }) => {
   const dispatch = useDispatch();
@@ -14,8 +14,9 @@ const ContactItem = ({ name, number, id }) => {
   const handleClick = (id) => {
     setNameId(id);
     dispatch(deleteContact(id));
-    dispatch(fetchContacts());
+    // dispatch(fetchContacts());
   };
+
   return (
     <Item>
       <span>
