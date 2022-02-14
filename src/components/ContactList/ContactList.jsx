@@ -1,17 +1,26 @@
 // import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import ContactItem from "../ContactItem/Item";
-import { getVisibleItems } from "../../redux/contacts/contactsSelected";
+import { getVisibleItems, getLoading } from "redux/contacts/contactsSelected";
 import { ListContainer } from "./CSSContactList";
+import { useEffect } from "react";
+import { fetchContacts } from "../../redux/contacts/contAsyncThunk";
 
 const ContactList = () => {
   const items = useSelector(getVisibleItems);
+  const loading = useSelector(getLoading);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
-  return (
+  return loading ? (
+    <p>...Loading</p>
+  ) : (
     <ListContainer>
-      {items.map(({ id, name, number }) => {
-        return <ContactItem key={id} id={id} name={name} number={number} />;
+      {items.map(({ id, name, phone }) => {
+        return <ContactItem key={id} id={id} name={name} number={phone} />;
       })}
     </ListContainer>
   );

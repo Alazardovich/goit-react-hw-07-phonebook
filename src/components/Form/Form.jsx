@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
-import { getItems } from "../../redux/contacts/contactsSelected";
+import { getItems } from "redux/contacts/contactsSelected";
 // import PropTypes from "prop-types";
+import { addContact } from "redux/contacts/contAsyncThunk";
 import { FormList } from "./CSSForm";
-import { addContact } from "../../redux/contacts/contactsSlice";
 
 const ContactForm = () => {
   const dispatch = useDispatch();

@@ -3,8 +3,8 @@ import { nanoid } from "nanoid";
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 import { FilterContainer } from "./CSSFilter";
-import { getFilter } from "../../redux/contacts/contactsSelected";
-import { changeFilter } from "../../redux/contacts/contactsSlice";
+import { getFilter } from "redux/contacts/contactsSelected";
+import { changeFilter } from "redux/contacts/contactsSlice";
 
 const Filter = () => {
   const filterId = nanoid();
