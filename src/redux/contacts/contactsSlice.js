@@ -27,15 +27,20 @@ const contactsSlice = createSlice({
   extraReducers: {
     [fetchContacts.pending]: (state, _) => {
       state.isLoading = true;
-      // state.items = action.payload;
+      state.error = null;
     },
     [fetchContacts.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.items = action.payload;
     },
-    // [addContact.pending]: (state, _) => {
-    //   state.isLoading = true;
-    // },
+    [fetchContacts.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    [addContact.pending]: (state, _) => {
+      state.isLoading = true;
+      state.error = null;
+    },
     [addContact.fulfilled]: (state, action) => {
       return {
         ...state,
@@ -43,8 +48,13 @@ const contactsSlice = createSlice({
         isLoading: false,
       };
     },
+    [addContact.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
     [deleteContact.pending]: (state, _) => {
       state.isLoading = true;
+      state.error = null;
     },
     [deleteContact.fulfilled]: (state, action) => {
       state.isLoading = false;
@@ -55,6 +65,10 @@ const contactsSlice = createSlice({
       );
       console.log(index);
       state.items.splice(index, 1);
+    },
+    [deleteContact.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
     },
   },
 });

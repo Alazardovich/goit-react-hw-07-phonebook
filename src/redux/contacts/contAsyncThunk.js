@@ -19,7 +19,7 @@ export const addContact = createAsyncThunk(
       const contacts = await Api.addContact(contactName);
       return contacts;
     } catch (error) {
-      rejectWithValue(error);
+      return rejectWithValue(error);
     }
   }
 );
@@ -31,7 +31,7 @@ export const deleteContact = createAsyncThunk(
       // console.log(contactId);
       return contacts;
     } catch (error) {
-      rejectWithValue(error);
+      return rejectWithValue(error);
       // console.log(error);
     }
   }
